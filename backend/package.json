@@ -1,0 +1,17 @@
+{
+  "name": "memoryforge-backend",
+  "version": "1.0.0",
+  "description": "MemoryForge Backend",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.22.0"
+  }
+}
