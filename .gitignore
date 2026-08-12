@@ -1,17 +1,33 @@
+# Environment / secrets
 .env
 .env.*
 !.env.example
 
+# Dependencies
 node_modules/
+
+# Build files
 dist/
+build/
 .vite/
 
+# Local database
 memoryforge-data/
 
+# Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
+# OS files
 .DS_Store
 Thumbs.db
 
+# Editor
 .vscode/
+
+# Temporary files
+*.tmp
+*.temp
