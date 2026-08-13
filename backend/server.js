@@ -1,10 +1,10 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+
 import "./database/db.js";
 import statusRoutes from "./routes/statusRoutes.js";
 import memoryRoutes from "./routes/memoryRoutes.js";
-dotenv.config();
 
 const app = express();
 
@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/status", statusRoutes);
 app.use("/api", memoryRoutes);
+
 app.get("/", (req, res) => {
     res.json({
         project: "MemoryForge",
@@ -23,6 +24,6 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`🚀 MemoryForge Server running on port ${PORT}`);
 });
