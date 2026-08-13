@@ -13,6 +13,7 @@ import { AddAgent } from "./components/addAgent";
 import { EditAgent } from "./components/editAgent";
 import {
     getAgents,
+    addAgent,
     deleteAgent,
     updateAgent
 } from "./services/agents";
@@ -839,4 +840,41 @@ document.addEventListener("click", () => {
         .getElementById("notification-panel")
         ?.classList.remove("show");
 
+});
+const addAgentButton = document.querySelector<HTMLButtonElement>("#add-agent-btn");
+
+addAgentButton?.addEventListener("click", async () => {
+
+    const nameInput = document.querySelector<HTMLInputElement>("#agent-name");
+    const roleInput = document.querySelector<HTMLInputElement>("#agent-role");
+    const statusInput = document.querySelector<HTMLSelectElement>("#agent-status");
+
+    const name = nameInput?.value.trim();
+    const role = roleInput?.value.trim();
+    const status = statusInput?.value;
+
+    if (!name || !role) {
+        alert("Please enter the agent name and role.");
+        return;
+    }
+
+    try {
+
+        await addAgent({
+            name,
+            role,
+            status
+        });
+
+        alert("Agent added successfully! 🚀");
+
+        if (nameInput) nameInput.value = "";
+        if (roleInput) roleInput.value = "";
+
+    } catch (error) {
+
+        console.error("Error adding agent:", error);
+        alert("Failed to add agent.");
+
+    }
 });

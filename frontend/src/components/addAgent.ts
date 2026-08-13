@@ -34,6 +34,8 @@ export function AddAgent() {
 
         </div>
 
+        <div id="agents-list"></div>
+
     </section>
 
     `;
