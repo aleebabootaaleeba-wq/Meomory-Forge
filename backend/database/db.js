@@ -11,13 +11,15 @@ const pool = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  ssl: {
-    rejectUnauthorized: false,
-  },
 });
 
 pool.connect()
-  .then(() => console.log("✅ Connected to CockroachDB"))
-  .catch((err) => console.error("❌ CockroachDB connection failed:", err.message));
+  .then((client) => {
+    console.log("✅ Connected to Local CockroachDB");
+    client.release();
+  })
+  .catch((err) => {
+    console.error("❌ CockroachDB connection failed:", err.message);
+  });
 
 export default pool;
