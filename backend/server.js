@@ -21,9 +21,8 @@ app.get("/", (req, res) => {
         status: "Running"
     });
 });
-
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 MemoryForge Server running on port ${PORT}`);
+app.listen(PORT, () => {
+    console.log(`🚀 MemoryForge Backend Running on port ${PORT}`);
 });
