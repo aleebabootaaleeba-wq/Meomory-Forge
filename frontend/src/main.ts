@@ -82,7 +82,7 @@ getAgents()
 
         }
 
-        result.data.forEach((agent: any) => {
+        result.forEach((agent: any) => {
 
             container.innerHTML += `
                 <div class="card">

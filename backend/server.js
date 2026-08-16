@@ -11,6 +11,8 @@ dotenv.config();
 
 const app = express();
 
+const PORT = process.env.PORT || 5000;
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -28,5 +30,9 @@ app.get("/", (req, res) => {
     });
 });
 
-// Export Express app for Vercel
+// Start server locally
+app.listen(PORT, () => {
+    console.log(`🚀 MemoryForge Backend Running on http://localhost:${PORT}`);
+});
+
 export default app;
