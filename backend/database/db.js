@@ -17,8 +17,9 @@ const pool = new Pool({
 });
 
 pool.connect()
-    .then(() => {
+    .then((client) => {
         console.log("✅ Connected to CockroachDB");
+        client.release();
     })
     .catch((err) => {
         console.error("❌ Database Connection Failed");
