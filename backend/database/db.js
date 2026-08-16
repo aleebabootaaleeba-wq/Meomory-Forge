@@ -1,29 +1,37 @@
+import pg from "pg";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-import pkg from "pg";
+const { Pool } = pg;
 
-const { Pool } = pkg;
-
+// CockroachDB connection
 const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    ssl: {
-        rejectUnauthorized: true
-    }
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 26257,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+
+  // Required for CockroachDB Cloud / SSL connections
+  ssl: process.env.DB_SSL === "true"
+    ? {
+        rejectUnauthorized: false,
+      }
+    : false,
 });
 
-pool.connect()
-    .then((client) => {
-        console.log("✅ Connected to CockroachDB");
-        client.release();
-    })
-    .catch((err) => {
-        console.error("❌ Database Connection Failed");
-        console.error(err);
-    });
+// Test database connection
+pool
+  .connect()
+  .then((client) => {
+    console.log("✅ Connected to CockroachDB");
+    client.release();
+  })
+  .catch((error) => {
+    console.error("❌ CockroachDB connection failed:");
+    console.error(error.message);
+  });
 
+// Export pool for controllers/routes
 export default pool;
