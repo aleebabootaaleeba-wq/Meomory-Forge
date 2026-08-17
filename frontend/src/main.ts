@@ -156,7 +156,7 @@ getMemories()
 
     container.innerHTML = "";
 
-    result.data.forEach((memory: any) => {
+    result.forEach((memory: any) => {
 
         container.innerHTML += `
 

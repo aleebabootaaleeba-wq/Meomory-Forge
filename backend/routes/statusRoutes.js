@@ -9,6 +9,14 @@ import {
 
 const router = express.Router();
 
+router.get("/", (req, res) => {
+    res.json({
+        success: true,
+        status: "Online",
+        message: "MemoryForge backend is running"
+    });
+});
+
 router.get("/agents", getAgents);
 
 router.post("/agents", addAgent);
